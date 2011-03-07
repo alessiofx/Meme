@@ -52,17 +52,16 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 	 * @param  int		$count			Number of item result
 	 * @param  int		$offset			Offset limit result item
 	 * @param  boolean	$published		Status of post request
-	 * @param  boolean	$home			Visible on home
 	 *
 	 * @return Array	Result posts          
      *                          
      *
      */
  
-	public function getAll($order = 'post_date DESC', $count = '', $offset = '', $published = true, $home = false, $where = null)
+	public function getAll($order = 'post_date DESC', $count = '', $offset = '', $published = true, $where = null)
 	{
 		
-		$id = 'Posts_getAll_'.$order.'_'.$count.'_'.$offset.'_'.$published.'_'.$home.'_'.$where;	
+		$id = 'Posts_getAll_'.$order.'_'.$count.'_'.$offset.'_'.$published.'_'.$where;	
 		$id = $this->urlAdapter->cleanURL($id);
 		
 		if(!($data = $this->cache->load($id)))
@@ -77,7 +76,6 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 
                 
                 if($published == true){$select = $select->where('post_status = 0');}
-				if($home == true){$select = $select->where('post_home = 1');}
 
 
                	$posts = $this->fetchAll($select)->toArray();
@@ -125,14 +123,13 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 	 * @param  int		$count			Number of item result
 	 * @param  int		$offset			Offset limit result item
 	 * @param  boolean	$published		Status of post request
-	 * @param  boolean	$home			Visible on home
 	 *
 	 * @return Array	Result posts          
      *                          
      *
      */
  
-	public function getFromCategory($category_id, $order = 'post_date DESC', $count = '', $offset = '', $published = true, $home = false)
+	public function getFromCategory($category_id, $order = 'post_date DESC', $count = '', $offset = '', $published = true)
 	{
 				$addElement = $this->CategoryAddModel->getFromCategoryId(1, $category_id);
 			
@@ -149,7 +146,7 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 					}
         		endforeach; 
                	
-				return $this->getAll($order , $count , $offset , $published , $home , $postsId);
+				return $this->getAll($order , $count , $offset , $published , $postsId);
 	}	
 
 	
@@ -182,8 +179,6 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
             $date = new Zend_Date($dateTime, 'Y-m-d H:i');
             $unixTimestamp = $date->get();
 
-			if($post['post_home'] == ''){$post_home = 0;}
-			else {$post_home = 1;}
 
                 $data = array(
 				'post_user'=> $post['post_user'],
@@ -193,7 +188,6 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 				'post_description'=> $post['post_description'],
 				'post_keywords'=> $post['post_keywords'],
 				'post_content'=> stripslashes($post['post_content']),
-				'post_home'=> $post_home,
 				'post_url'=> $this->urlAdapter->cleanURL($post['post_title']),
 					);
 
@@ -315,7 +309,6 @@ class Admin_Model_DbTable_PostsTable extends Zend_Db_Table_Abstract {
 				'post_description'=> $post['post_description'],
 				'post_keywords'=> $post['post_keywords'],
 				'post_content'=> stripslashes($post['post_content']),
-				'post_home'=> $post['post_home'],
 				'post_url'=> $this->urlAdapter->cleanURL($post['post_title']),
 					);
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 23 feb, 2011 at 07:39 PM
+-- Generato il: 07 mar, 2011 at 06:30 PM
 -- Versione MySQL: 5.1.44
 -- Versione PHP: 5.3.2
 
@@ -248,16 +248,15 @@ CREATE TABLE `meme_posts` (
   `post_description` varchar(255) NOT NULL,
   `post_keywords` varchar(255) NOT NULL,
   `post_content` text NOT NULL,
-  `post_home` int(1) unsigned NOT NULL DEFAULT '0',
   `post_url` varchar(255) NOT NULL,
   PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dump dei dati per la tabella `meme_posts`
 --
 
-INSERT INTO `meme_posts` VALUES(1, 1, 1290873180, 0, 'Hello world!', 'Welcome to Meme Cms.', 'Meme Cms', '<p>Welcome to Meme Cms. This is your first post. Edit or delete it, then start blogging!</p>', 1, 'hello_world_');
+INSERT INTO `meme_posts` VALUES(1, 1, 1290873180, 0, 'Hello world!', 'Welcome to Meme Cms.', 'Meme Cms', '<p>Welcome to Meme Cms. This is your first post. Edit or delete it, then start blogging!</p>', 'hello_world_');
 
 -- --------------------------------------------------------
 

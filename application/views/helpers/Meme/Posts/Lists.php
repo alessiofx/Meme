@@ -22,13 +22,13 @@
 
 class Zend_View_Helper_Meme_Posts_Lists {
 
-	function Meme_Posts_Lists($home = false, $number = 5, $list = null) {
+	function Meme_Posts_Lists($number = 5, $list = null) {
 
 		$PostsModel = new Admin_Model_DbTable_PostsTable();
 		
 		if($list == null)
 		{
-    		$PostsList = $PostsModel->getAll('post_date DESC', $number , '', true, $home);
+    		$PostsList = $PostsModel->getAll('post_date DESC', $number , '', true);
 
 		}
 		else
