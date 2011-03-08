@@ -2,7 +2,7 @@
 
 	<h4>Category <?= $this->categoryname ?></h4>
 
-	<?= $this->Meme_Posts_Lists(false, $this->ItemForPage, $this->PostList); ?>
+	<?= $this->Meme_Posts_Lists($this->ItemForPage, $this->PostList); ?>
 	
 	<?= $this->paginationControl($this->PostList,
                                     'Sliding',
